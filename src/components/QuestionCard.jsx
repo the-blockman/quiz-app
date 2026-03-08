@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function QuestionCard({
   questionData,
@@ -7,6 +7,10 @@ function QuestionCard({
   handleAnswer,
 }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [currentQuestion]);
 
   const answers = [
     ...questionData.incorrect_answers,
