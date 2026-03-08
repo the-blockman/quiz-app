@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       {screen === "landing" && (
         <QuizStart
           startQuiz={(amount, difficulty) => {
