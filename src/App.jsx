@@ -1,4 +1,5 @@
 import { useState } from "react";
+import QuizStart from "./components/QuizStart";
 
 function App() {
   const [screen, setScreen] = useState("landing");
@@ -6,10 +7,12 @@ function App() {
   return (
     <div>
       {screen === "landing" && (
-        <div>
-          <h1>Quiz App</h1>
-          <button onClick={() => setScreen("quiz")}>Start Quiz</button>
-        </div>
+        <QuizStart
+          startQuiz={(amount, difficulty) => {
+            console.log(amount, difficulty);
+            setScreen("quiz");
+          }}
+        />
       )}
 
       {screen === "quiz" && (
