@@ -6,9 +6,11 @@ function App() {
   const [screen, setScreen] = useState("landing");
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
 
   const fetchQuestions = async (amount, difficulty) => {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`,
@@ -22,6 +24,8 @@ function App() {
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
+
+    setLoading(false);
   };
 
   const handleAnswer = (selectedAnswer) => {
@@ -51,14 +55,17 @@ function App() {
         />
       )}
 
-      {screen === "quiz" && questions.length > 0 && (
-        <QuestionCard
-          questionData={questions[currentQuestion]}
-          currentQuestion={currentQuestion}
-          totalQuestions={questions.length}
-          handleAnswer={handleAnswer}
-        />
-      )}
+      {screen === "quiz" &&
+        (loading ? (
+          <p>Loading questions...</p>
+        ) : (
+          <QuestionCard
+            questionData={questions[currentQuestion]}
+            currentQuestion={currentQuestion}
+            totalQuestions={questions.length}
+            handleAnswer={handleAnswer}
+          />
+        ))}
 
       {screen === "results" && (
         <div>
