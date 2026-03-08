@@ -2,6 +2,7 @@ import { useState } from "react";
 import QuizStart from "./components/QuizStart";
 import QuestionCard from "./components/QuestionCard";
 import ScoreSummary from "./components/ScoreSummary";
+import { fetchQuizQuestions } from "./services/api";
 
 function App() {
   const [screen, setScreen] = useState("landing");
@@ -12,19 +13,10 @@ function App() {
 
   const fetchQuestions = async (amount, difficulty) => {
     setLoading(true);
-    try {
-      const response = await fetch(
-        `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`,
-      );
 
-      const data = await response.json();
+    const results = await fetchQuizQuestions(amount, difficulty);
 
-      //console.log(data.results);
-
-      setQuestions(data.results);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
+    setQuestions(results);
 
     setLoading(false);
   };
