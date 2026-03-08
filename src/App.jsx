@@ -3,6 +3,23 @@ import QuizStart from "./components/QuizStart";
 
 function App() {
   const [screen, setScreen] = useState("landing");
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+
+  const fetchQuestions = async (amount, difficulty) => {
+    try {
+      const response = await fetch(
+        `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`,
+      );
+
+      const data = await response.json();
+
+      setQuestions(data.results);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    }
+  };
 
   return (
     <div>
