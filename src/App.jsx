@@ -24,6 +24,22 @@ function App() {
     }
   };
 
+  const handleAnswer = (selectedAnswer) => {
+    const correctAnswer = questions[currentQuestion].correct_answer;
+
+    if (selectedAnswer === correctAnswer) {
+      setScore(score + 1);
+    }
+
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion < questions.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setScreen("results");
+    }
+  };
+
   return (
     <div>
       {screen === "landing" && (
