@@ -1,5 +1,6 @@
 import { useState } from "react";
 import QuizStart from "./components/QuizStart";
+import QuestionCard from "./components/QuestionCard";
 
 function App() {
   const [screen, setScreen] = useState("landing");
@@ -15,7 +16,7 @@ function App() {
 
       const data = await response.json();
 
-      console.log(data.results);
+      //console.log(data.results);
 
       setQuestions(data.results);
     } catch (error) {
