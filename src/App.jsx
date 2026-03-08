@@ -15,6 +15,8 @@ function App() {
 
       const data = await response.json();
 
+      console.log(data.results);
+
       setQuestions(data.results);
     } catch (error) {
       console.error("Error fetching questions:", error);
@@ -26,7 +28,7 @@ function App() {
       {screen === "landing" && (
         <QuizStart
           startQuiz={(amount, difficulty) => {
-            console.log(amount, difficulty);
+            fetchQuestions(amount, difficulty);
             setScreen("quiz");
           }}
         />
