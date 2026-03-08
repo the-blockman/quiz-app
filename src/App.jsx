@@ -51,11 +51,13 @@ function App() {
         />
       )}
 
-      {screen === "quiz" && (
-        <div>
-          <h1>Quiz Screen</h1>
-          <button onClick={() => setScreen("results")}>Finish Quiz</button>
-        </div>
+      {screen === "quiz" && questions.length > 0 && (
+        <QuestionCard
+          questionData={questions[currentQuestion]}
+          currentQuestion={currentQuestion}
+          totalQuestions={questions.length}
+          handleAnswer={handleAnswer}
+        />
       )}
 
       {screen === "results" && (
