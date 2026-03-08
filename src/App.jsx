@@ -1,6 +1,7 @@
 import { useState } from "react";
 import QuizStart from "./components/QuizStart";
 import QuestionCard from "./components/QuestionCard";
+import ScoreSummary from "./components/ScoreSummary";
 
 function App() {
   const [screen, setScreen] = useState("landing");
@@ -75,10 +76,11 @@ function App() {
         ))}
 
       {screen === "results" && (
-        <div>
-          <h1>Results Screen</h1>
-          <button onClick={resetQuiz}>Restart Quiz</button>
-        </div>
+        <ScoreSummary
+          score={score}
+          totalQuestions={questions.length}
+          restartQuiz={resetQuiz}
+        />
       )}
     </div>
   );
