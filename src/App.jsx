@@ -10,6 +10,7 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
 
   const fetchQuestions = async (amount, difficulty) => {
     setLoading(true);
@@ -23,6 +24,15 @@ function App() {
 
   const handleAnswer = (selectedAnswer) => {
     const correctAnswer = questions[currentQuestion].correct_answer;
+
+    setUserAnswers((prev) => [
+      ...prev,
+      {
+        question: questions[currentQuestion].question,
+        selectedAnswer,
+        correctAnswer,
+      },
+    ]);
 
     if (selectedAnswer === correctAnswer) {
       setScore((prevScore) => prevScore + 1);
@@ -41,6 +51,7 @@ function App() {
     setQuestions([]);
     setCurrentQuestion(0);
     setScore(0);
+    setUserAnswers([]);
     setScreen("landing");
   };
 
@@ -71,6 +82,7 @@ function App() {
         <ScoreSummary
           score={score}
           totalQuestions={questions.length}
+          userAnswers={userAnswers}
           restartQuiz={resetQuiz}
         />
       )}
