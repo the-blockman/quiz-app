@@ -44,6 +44,13 @@ function App() {
     }
   };
 
+  const resetQuiz = () => {
+    setQuestions([]);
+    setCurrentQuestion(0);
+    setScore(0);
+    setScreen("landing");
+  };
+
   return (
     <div>
       {screen === "landing" && (
@@ -70,7 +77,7 @@ function App() {
       {screen === "results" && (
         <div>
           <h1>Results Screen</h1>
-          <button onClick={() => setScreen("landing")}>Restart</button>
+          <button onClick={resetQuiz}>Restart Quiz</button>
         </div>
       )}
     </div>
