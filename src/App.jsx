@@ -25,7 +25,7 @@ function App() {
     const correctAnswer = questions[currentQuestion].correct_answer;
 
     if (selectedAnswer === correctAnswer) {
-      setScore(score + 1);
+      setScore((prevScore) => prevScore + 1);
     }
 
     const nextQuestion = currentQuestion + 1;

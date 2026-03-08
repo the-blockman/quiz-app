@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { decodeHtml } from "../utils/decodeHtml";
 
 function QuestionCard({
   questionData,
@@ -26,7 +27,7 @@ function QuestionCard({
         Question {currentQuestion + 1} / {totalQuestions}
       </h2>
 
-      <p>{questionData.question}</p>
+      <p>{decodeHtml(questionData.question)}</p>
 
       <div>
         {answers.map((answer, index) => (
@@ -37,7 +38,7 @@ function QuestionCard({
               handleAnswer(answer);
             }}
           >
-            {answer}
+            {decodeHtml(answer)}
           </button>
         ))}
       </div>
