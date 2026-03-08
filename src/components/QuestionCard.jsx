@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 function QuestionCard({
   questionData,
   currentQuestion,
   totalQuestions,
   handleAnswer,
 }) {
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+
   const answers = [
     ...questionData.incorrect_answers,
     questionData.correct_answer,
@@ -22,7 +26,13 @@ function QuestionCard({
 
       <div>
         {answers.map((answer, index) => (
-          <button key={index} onClick={() => handleAnswer(answer)}>
+          <button
+            key={index}
+            onClick={() => {
+              setSelectedAnswer(answer);
+              handleAnswer(answer);
+            }}
+          >
             {answer}
           </button>
         ))}
