@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const categories = [
   { id: 9, name: "General Knowledge" },
@@ -22,6 +22,12 @@ function QuizStart({ startQuiz }) {
   const filteredCategories = categories.filter((cat) =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+
+  useEffect(() => {
+    if (filteredCategories.length > 0) {
+      setCategory(filteredCategories[0].id);
+    }
+  }, [searchTerm, filteredCategories]);
 
   return (
     <div>
