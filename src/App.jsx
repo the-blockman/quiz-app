@@ -12,10 +12,10 @@ function App() {
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
 
-  const fetchQuestions = async (amount, difficulty) => {
+  const fetchQuestions = async (amount, difficulty, category) => {
     setLoading(true);
 
-    const results = await fetchQuizQuestions(amount, difficulty);
+    const results = await fetchQuizQuestions(amount, difficulty, category);
 
     setQuestions(results);
 
@@ -59,8 +59,8 @@ function App() {
     <div className="app-container">
       {screen === "landing" && (
         <QuizStart
-          startQuiz={(amount, difficulty) => {
-            fetchQuestions(amount, difficulty);
+          startQuiz={(amount, difficulty, category) => {
+            fetchQuestions(amount, difficulty, category);
             setScreen("quiz");
           }}
         />
