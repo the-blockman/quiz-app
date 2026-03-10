@@ -93,7 +93,12 @@ function QuizStart({ startQuiz }) {
         </select>
       </div>
 
-      <button onClick={handleStart}>Start Quiz</button>
+      <button
+        onClick={handleStart}
+        className="w-full max-w-70.75 mx-auto bg-orange-400 text-white py-3 rounded-lg"
+      >
+        Start Quiz
+      </button>
     </div>
   );
 }

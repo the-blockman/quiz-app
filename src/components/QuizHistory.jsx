@@ -17,7 +17,12 @@ function QuizHistory({ quizHistory, goBack }) {
         ))
       )}
 
-      <button onClick={goBack}>Back</button>
+      <button
+        onClick={goBack}
+        className="w-full border border-gray-600 rounded-lg p-3 text-left hover:bg-orange-400 hover:text-white transition"
+      >
+        Back
+      </button>
     </div>
   );
 }

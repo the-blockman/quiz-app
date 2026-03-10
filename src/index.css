@@ -15,6 +15,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.quiz-page {
+  background-color: #1e1e1e;
+  min-height: 100vh;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -34,7 +39,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/**button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -46,7 +51,7 @@ button {
   background-color: #ea8827;
   width: auto;
   color: white;
-}
+}**/
 
 .app-container {
   min-height: 100vh;
@@ -68,19 +73,6 @@ button {
 
 .question {
   font-weight: bold;
-}
-
-.correct {
-  color: green;
-}
-
-.wrong {
-  color: red;
-}
-
-.correct-answer {
-  color: green;
-  font-style: italic;
 }
 
 .result-buttons {
