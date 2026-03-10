@@ -22,14 +22,16 @@ function QuestionCard({
   answers.sort(() => Math.random() - 0.5);
 
   return (
-    <div>
-      <h2>
+    <div className="flex flex-col gap-6">
+      <h2 className="text-sm text-gray-400">
         Question {currentQuestion + 1} / {totalQuestions}
       </h2>
 
-      <p>{decodeHtml(questionData.question)}</p>
+      <p className="text-xl font-semibold text-primary">
+        {decodeHtml(questionData.question)}
+      </p>
 
-      <div>
+      <div className="grid gap-3 mt-4">
         {answers.map((answer, index) => (
           <button
             key={index}
@@ -37,6 +39,7 @@ function QuestionCard({
               setSelectedAnswer(answer);
               handleAnswer(answer);
             }}
+            className="w-full border border-gray-600 rounded-lg p-3 text-left hover:bg-#EA8827 hover:text-white transition"
           >
             {decodeHtml(answer)}
           </button>

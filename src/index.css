@@ -44,16 +44,8 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   background-color: #ea8827;
-  min-width: 283px;
+  width: auto;
   color: white;
-}
-
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-button:focus {
-  outline: none;
 }
 
 .app-container {
