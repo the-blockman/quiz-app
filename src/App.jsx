@@ -127,9 +127,16 @@ function App() {
         <ScoreSummary
           score={score}
           totalQuestions={questions.length}
-          userAnswers={userAnswers}
           restartQuiz={resetQuiz}
           viewHistory={() => setScreen("history")}
+          viewAnswers={() => setScreen("answers")}
+        />
+      )}
+
+      {screen === "answers" && (
+        <AnswerList
+          userAnswers={userAnswers}
+          goBack={() => setScreen("results")}
         />
       )}
 
