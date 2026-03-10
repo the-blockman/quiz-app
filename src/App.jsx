@@ -14,6 +14,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [quizHistory, setQuizHistory] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const savedHistory = localStorage.getItem("quizHistory");
@@ -25,10 +26,24 @@ function App() {
 
   const fetchQuestions = async (amount, difficulty, category) => {
     setLoading(true);
+    setError(null);
 
-    const results = await fetchQuizQuestions(amount, difficulty, category);
+    try {
+      const results = await fetchQuizQuestions(amount, difficulty, category);
 
-    setQuestions(results);
+      if (!results || results.length === 0) {
+        setError(
+          "No quiz questions found. Please try another category or difficulty.",
+        );
+        setLoading(false);
+        return;
+      }
+
+      setQuestions(results);
+    } catch (err) {
+      setError("Something went wrong while fetching quiz questions.");
+      console.error(err);
+    }
 
     setLoading(false);
   };
@@ -76,6 +91,7 @@ function App() {
     setCurrentQuestion(0);
     setScore(0);
     setUserAnswers([]);
+    setError(null);
     setScreen("landing");
   };
 
@@ -93,6 +109,11 @@ function App() {
       {screen === "quiz" &&
         (loading ? (
           <p>Loading questions...</p>
+        ) : error ? (
+          <div>
+            <p>{error}</p>
+            <button onClick={() => setScreen("landing")}>Back to Start</button>
+          </div>
         ) : (
           <QuestionCard
             questionData={questions[currentQuestion]}
