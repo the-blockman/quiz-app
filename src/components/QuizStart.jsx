@@ -30,12 +30,16 @@ function QuizStart({ startQuiz }) {
   }, [searchTerm, filteredCategories]);
 
   return (
-    <div>
-      <h1>Quiz App</h1>
+    <div className="flex flex-col items-center text-center gap-6">
+      <h1 className="text-3xl font-bold text-gray-900">Framer Quiz App</h1>
 
       <div>
         <label>Number of Questions:</label>
-        <select value={amount} onChange={(e) => setAmount(e.target.value)}>
+        <select
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3"
+        >
           <option value={5}>5</option>
           <option value={10}>10</option>
           <option value={15}>15</option>
@@ -47,6 +51,7 @@ function QuizStart({ startQuiz }) {
         <select
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3"
         >
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
@@ -57,12 +62,15 @@ function QuizStart({ startQuiz }) {
       <div>
         <label>Search Topic:</label>
 
-        <input
-          type="text"
-          placeholder="Search categories..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div className="flex flex-col gap-4 w-full">
+          <input
+            type="text"
+            placeholder="Search categories..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg p-3"
+          />
+        </div>
       </div>
 
       {filteredCategories.length === 0 && (
@@ -72,7 +80,11 @@ function QuizStart({ startQuiz }) {
       <div>
         <label>Category:</label>
 
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3"
+        >
           {filteredCategories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}

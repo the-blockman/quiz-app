@@ -2,6 +2,7 @@ import { useState } from "react";
 import QuizStart from "./components/QuizStart";
 import QuestionCard from "./components/QuestionCard";
 import ScoreSummary from "./components/ScoreSummary";
+import AnswerList from "./components/AnswerList";
 import { fetchQuizQuestions } from "./services/api";
 import { useEffect } from "react";
 import QuizHistory from "./components/QuizHistory";
@@ -69,8 +70,10 @@ function App() {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
+      const finalScore = selectedAnswer === correctAnswer ? score + 1 : score;
+
       const newResult = {
-        score,
+        score: finalScore,
         totalQuestions: questions.length,
         category: questions[0]?.category,
         date: new Date().toLocaleString(),

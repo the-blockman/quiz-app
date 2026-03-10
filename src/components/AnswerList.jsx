@@ -1,8 +1,10 @@
-import decodeHtml from "../utils/decodeHtml";
+import { decodeHtml } from "../utils/decodeHtml";
 
-function AnswerList({ userAnswers }) {
+function AnswerList({ userAnswers, goBack }) {
   return (
     <div>
+      <h1>Answer Review</h1>
+
       {userAnswers.map((answer, index) => {
         const isCorrect = answer.selectedAnswer === answer.correctAnswer;
 
@@ -20,6 +22,8 @@ function AnswerList({ userAnswers }) {
           </div>
         );
       })}
+
+      <button onClick={goBack}>Back to Results</button>
     </div>
   );
 }
