@@ -13,10 +13,15 @@ function QuizStart({ startQuiz }) {
   const [amount, setAmount] = useState(5);
   const [difficulty, setDifficulty] = useState("easy");
   const [category, setCategory] = useState(9);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleStart = () => {
     startQuiz(amount, difficulty, category);
   };
+
+  const filteredCategories = categories.filter((cat) =>
+    cat.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <div>
@@ -44,10 +49,25 @@ function QuizStart({ startQuiz }) {
       </div>
 
       <div>
+        <label>Search Topic:</label>
+
+        <input
+          type="text"
+          placeholder="Search categories..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      {filteredCategories.length === 0 && (
+        <p>No topics found. Try another search.</p>
+      )}
+
+      <div>
         <label>Category:</label>
 
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          {categories.map((cat) => (
+          {filteredCategories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}
             </option>
