@@ -1,6 +1,12 @@
 import { decodeHtml } from "../utils/decodeHtml";
 
-function ScoreSummary({ score, totalQuestions, userAnswers, restartQuiz }) {
+function ScoreSummary({
+  score,
+  totalQuestions,
+  userAnswers,
+  restartQuiz,
+  viewHistory,
+}) {
   return (
     <div>
       <h1>Quiz Finished!</h1>
@@ -23,6 +29,8 @@ function ScoreSummary({ score, totalQuestions, userAnswers, restartQuiz }) {
         ))}
 
         <button onClick={restartQuiz}>Restart Quiz</button>
+
+        <button onClick={viewHistory}>View Quiz History</button>
       </div>
     </div>
   );
