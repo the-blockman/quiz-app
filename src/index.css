@@ -63,6 +63,39 @@ button:focus {
   text-align: center;
 }
 
+.score {
+  margin-bottom: 20px;
+}
+
+.result-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.correct {
+  color: green;
+}
+
+.wrong {
+  color: red;
+}
+
+.correct-answer {
+  color: green;
+  font-style: italic;
+}
+
+.result-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

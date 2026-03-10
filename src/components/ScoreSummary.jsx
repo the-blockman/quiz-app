@@ -12,25 +12,37 @@ function ScoreSummary({
       <h1>Quiz Finished!</h1>
 
       <div>
-        <h2>
+        <h2 className="score">
           Your Score: {score} / {totalQuestions}
         </h2>
 
-        {userAnswers.map((answer, index) => (
-          <div key={index}>
-            <p>{decodeHtml(answer.question)}</p>
+        {userAnswers.map((answer, index) => {
+          const isCorrect = answer.selectedAnswer === answer.correctAnswer;
 
-            <p>Your answer: {decodeHtml(answer.selectedAnswer)}</p>
+          return (
+            <div key={index} className="result-item">
+              <p className="question">
+                {index + 1}. {decodeHtml(answer.question)}
+              </p>
 
-            {answer.selectedAnswer !== answer.correctAnswer && (
-              <p>Correct answer: {decodeHtml(answer.correctAnswer)}</p>
-            )}
-          </div>
-        ))}
+              <p className={isCorrect ? "correct" : "wrong"}>
+                Your answer: {decodeHtml(answer.selectedAnswer)}
+              </p>
 
-        <button onClick={restartQuiz}>Restart Quiz</button>
+              {!isCorrect && (
+                <p className="correct-answer">
+                  Correct answer: {decodeHtml(answer.correctAnswer)}
+                </p>
+              )}
+            </div>
+          );
+        })}
 
-        <button onClick={viewHistory}>View Quiz History</button>
+        <div className="result-buttons">
+          <button onClick={restartQuiz}>Restart Quiz</button>
+
+          <button onClick={viewHistory}>View Quiz History</button>
+        </div>
       </div>
     </div>
   );
